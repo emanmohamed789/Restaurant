@@ -4,34 +4,17 @@
  * and open the template in the editor.
  */
 package Controller;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
+import Model.Database;
 import java.sql.SQLException;
-import java.sql.Statement;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Scanner;
-
 
 
 /**
  *
  * @author silkroad
  */
-public class Login extends person {
-   
+public class Login extends Person {
+    
+    Database database = new Database();
      public Login() {
 
     }
@@ -66,6 +49,18 @@ public class Login extends person {
 
     public String getPassEmployee() {
         return this.passEmployee;
+    }
+    
+    public void ResetLoginInfo(String Name, String Password) throws SQLException, ClassNotFoundException{
+        database.ResetLoginInfo(Name, Password);
+    }
+    
+    public void RetrieveAdminLogin(Login user) throws ClassNotFoundException, SQLException{
+        database.RetrieveAdminLogin(user);
+    }
+    
+    public void RetrieveEmployeeLogin(Login user) throws ClassNotFoundException, SQLException{
+        database.RetrieveEmployeeLogin(user);
     }
     
        

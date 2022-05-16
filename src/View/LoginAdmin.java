@@ -7,14 +7,17 @@ package View;
 
 import javax.swing.JOptionPane;
 import Controller.Login;
-import Model.Database;
+import Controller.Login;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author DELL
  */
 public class LoginAdmin extends javax.swing.JFrame {
 
-    Database database = new Database();
+    Login login = new Login();
 
     /**
      * Creates new form LoginAmin
@@ -95,10 +98,15 @@ public class LoginAdmin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Login admin = new Login();
-        database.RetrieveLoginInfo(admin);
+        try {
+            login.RetrieveAdminLogin(login);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoginAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        if (jTextField1.getText().equals(admin.getUserNameAdmin()) && jPasswordField1.getText().equals(admin.getPassAdmin())) {
+        if (jTextField1.getText().equals(login.getUserNameAdmin()) && jPasswordField1.getText().equals(login.getPassAdmin())) {
             this.setVisible(false);
             new AdministrativeModule().setVisible(true);
 

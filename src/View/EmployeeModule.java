@@ -5,16 +5,6 @@
  */
 package View;
 
-import static View.CancelOrderJFrame.drive;
-import static View.CancelOrderJFrame.password;
-import static View.CancelOrderJFrame.url;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
-import Controller.Discount;
-
 /**
  *
  * @author silkroad
@@ -91,7 +81,7 @@ public class EmployeeModule extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        new CustomerHome().setVisible(true);
+        new MenuCustomer().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -103,7 +93,7 @@ public class EmployeeModule extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        new billJFrame().setVisible(true);
+        new MenuBilling().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

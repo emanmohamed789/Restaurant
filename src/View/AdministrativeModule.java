@@ -5,14 +5,6 @@
  */
 package View;
 
-import static View.CancelOrderJFrame.drive;
-import static View.CancelOrderJFrame.password;
-import static View.CancelOrderJFrame.url;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 /**
  *
  * @author silkroad
@@ -111,14 +103,14 @@ public class AdministrativeModule extends javax.swing.JFrame {
     private void jButtonEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEmployeeActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        new EmployeeFrame().setVisible(true);
+        new MenuEmployee().setVisible(true);
         
     }//GEN-LAST:event_jButtonEmployeeActionPerformed
 
     private void jButtonMealsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMealsActionPerformed
         // TODO add your handling code here:
          this.setVisible(false);
-        new Meals().setVisible(true);
+        new MenuMeals().setVisible(true);
     }//GEN-LAST:event_jButtonMealsActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

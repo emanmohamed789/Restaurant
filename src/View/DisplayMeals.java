@@ -5,34 +5,26 @@
  */
 package View;
 
-import Model.Database;
-import static View.billJFrame.password;
-import static View.billJFrame.url;
-import static View.billJFrame.name;
-import java.sql.Connection;
-import java.sql.*;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
+import Controller.Meal;
 import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author silkroad
  */
 public class DisplayMeals extends javax.swing.JFrame {
-Database database = new Database();
-
+Meal meal = new Meal();
     /**
      * Creates new form Display
      */
-    public DisplayMeals() {
+    public DisplayMeals() throws ClassNotFoundException, SQLException {
         initComponents();
                 
         DefaultTableModel model=( DefaultTableModel)jTable1.getModel();
         
-        database.DisplayMeal(model);
+        meal.DisplayMeals(model);
                
     }
 
@@ -83,7 +75,7 @@ Database database = new Database();
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
          this.setVisible(false);
-        new Meals().setVisible(true);
+        new MenuMeals().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -117,7 +109,13 @@ Database database = new Database();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DisplayMeals().setVisible(true);
+                try {
+                    new DisplayMeals().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(DisplayMeals.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(DisplayMeals.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -5,12 +5,8 @@
  */
 package View;
 
-import java.awt.Component;
 import javax.swing.JOptionPane;
-
-import View.AddMeal;
-import Controller.meal;
-import Model.Database;
+import Controller.Meal;
 
 
 /**
@@ -19,7 +15,7 @@ import Model.Database;
  */
 public class AddMeal extends javax.swing.JFrame {
 
-    Database database = new Database();
+    Meal Meal = new Meal();
 
     /**
      * Creates new form Add
@@ -106,7 +102,6 @@ public class AddMeal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
           
-            meal meal=new meal();
          try
          {
              String Name=jTextField1.getText();
@@ -116,7 +111,7 @@ public class AddMeal extends javax.swing.JFrame {
              }
              double Price=Double.parseDouble(jTextField2.getText());
              
-             database.saveMeal(Name, Price);
+             Meal.AddMeal(Name, Price);
              
              JOptionPane.showMessageDialog(rootPane, "the meal is added sucessfully");
          } catch (Exception ex) {
@@ -134,7 +129,7 @@ public class AddMeal extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        new Meals().setVisible(true);
+        new MenuMeals().setVisible(true);
         this.setVisible(false);
        
     }//GEN-LAST:event_jButton3ActionPerformed

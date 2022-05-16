@@ -4,36 +4,26 @@
 * and open the template in the editor.
 */
 package Controller;
-
-import java.util.*;
-import java.io.*;
-import java.util.*;
-import java.util.InputMismatchException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.sql.*;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import java.awt.Color;
-import java.awt.*;
-import java.awt.event.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import Model.Database;
-
+import java.io.IOException;
+import java.sql.SQLException;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author hp
  */
-public class customer {
+public class Customer {
 
     private String Name;
     private int id;
     private int phone;
     private String address;
     private String email;
+    Database database = new Database();
     
-    public customer() {
+    public Customer() {
     }
 
     public String getName() {
@@ -51,6 +41,10 @@ public class customer {
     public String getAddress() {
         return address;
     }
+    
+    public String getEmail() {
+        return email;
+    }
 
     public void setName(String Name) {
         this.Name = Name;
@@ -66,5 +60,33 @@ public class customer {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    public void AddCustomer(int Id, String customerName, String Address, int Phone, String Email) throws Exception{
+        database.saveCustomer(Id, customerName, Address, Phone, Email);
+    }
+    
+    public void DisplayCustomers(DefaultTableModel model) throws ClassNotFoundException, SQLException{
+        database.RetrieveListOfCustomers(model);
+    }
+    
+    public void UpdateCustomer(String name, String address, int phone, String email, String id) throws IOException, ClassNotFoundException, SQLException{
+        database.updateCustomer(name, address, phone, email, id);
+    }
+    
+    public void DeleteCustomer(int id) throws SQLException, ClassNotFoundException{
+        database.deleteCustomer(id);
+    }
+    
+    public void GenerateCustomerID(int id, JLabel label) throws SQLException, ClassNotFoundException{
+        database.GenerateCustomerID(id, label);
+    }
+    
+    public int SearchCustomer(JTextField jTextID, JTextField jTextName,JTextField jTextAddress, JTextField jTextPhone, JTextField jTextEmail) throws SQLException, ClassNotFoundException{
+        return database.SearchCustomer(jTextID, jTextName, jTextAddress, jTextPhone, jTextEmail);
     }
 }

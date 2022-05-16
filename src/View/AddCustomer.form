@@ -64,7 +64,7 @@
               <Color blue="dd" green="76" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/View/close.png"/>
+              <Image iconType="3" name="/Images/close.png"/>
             </Property>
           </Properties>
           <Events>
@@ -298,7 +298,7 @@
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/View/interfacemeal.jpg"/>
+              <Image iconType="3" name="/Images/interfacemeal.jpg"/>
             </Property>
           </Properties>
           <Constraints>

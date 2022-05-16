@@ -5,26 +5,18 @@
  */
 package View;
 
-import static View.CancelOrderJFrame.drive;
-import static View.CancelOrderJFrame.name;
-import static View.CancelOrderJFrame.password;
-import static View.CancelOrderJFrame.url;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import javax.swing.JOptionPane;
-import Controller.meal;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import static javax.swing.text.html.HTML.Attribute.ID;
-import Controller.Employee;
-import Model.Database;
+import Controller.Meal;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author DELL
  */
 public class DeleteMeal extends javax.swing.JFrame {
-Database database = new Database();
+Meal Meal = new Meal();
     /**
      * Creates new form DeleteMeal
      */
@@ -107,9 +99,29 @@ Database database = new Database();
         // TODO add your handling code here:
       
             int ID = Integer.parseInt(jTextField1.getText());
-            meal meal = new meal();
             
-            database.deleteMeal(ID, jTextField1, meal);
+    try {
+        if(Meal.MealExists(ID)==0){
+            
+            JOptionPane.showMessageDialog(null, "Meal does not Exist");
+        }else{
+            
+            
+            if (jTextField1.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Error Input");
+            }
+            
+            Meal.DeleteMeal(ID);
+            
+            JOptionPane.showMessageDialog(null, "the Meal is Deleted sucessfully");
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(DeleteMeal.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (Exception ex) {
+        Logger.getLogger(DeleteMeal.class.getName()).log(Level.SEVERE, null, ex);
+    }
+            
+   
             
             
             
@@ -119,7 +131,7 @@ Database database = new Database();
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
-        new Meals().setVisible(true);
+        new MenuMeals().setVisible(true);
         this.setVisible(false);
        
         

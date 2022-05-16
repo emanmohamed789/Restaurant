@@ -5,33 +5,22 @@
  */
 package View;
 
-import static View.CancelOrderJFrame.drive;
-import static View.CancelOrderJFrame.name;
-import static View.CancelOrderJFrame.password;
-import static View.CancelOrderJFrame.url;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import javax.swing.JOptionPane;
+import Controller.Login;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import Controller.customer;
 
 /**
  *
  * @author silkroad
  */
 public class ResetUser extends javax.swing.JFrame {
-
+Login login = new Login();
     /**
      * Creates new form change
      */
-    Connection con = null;
-    static final String drive = "com.mysql.cj.jdbc.Driver";
-    static final String url = "jdbc:mysql://localhost/project";
-    static final String name = "omnia";
-    static final String password = "Omnia123";
+
     public ResetUser() {
         initComponents();
     }
@@ -138,29 +127,20 @@ public class ResetUser extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
        String userName = jTextField1.getText();
-        String password1 = jPasswordField1.getText();
-        Connection con = null;
-        Statement stmt = null;
-        int id=1;
-        try {
-            Class.forName(drive);
-            con = DriverManager.getConnection(url, name, password);
-            if (con != null) {
-                System.out.println("connected");
-            }
-            stmt = con.createStatement();
-            String q = "UPDATE login SET username='" + userName + "',password='" + password1 + "' WHERE ID='"+id+"'";
-            stmt.executeUpdate(q);
+       String password = jPasswordField1.getText();
+       
+    try {
+        
+        login.ResetLoginInfo(userName, password);
+        JOptionPane.showMessageDialog(rootPane, "Changed Successfully");
 
-            stmt.close();
-            con.close();
-             JOptionPane.showMessageDialog(rootPane, "Changed Successfully");
+    } catch (SQLException ex) {
+        Logger.getLogger(ResetUser.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
+            
 
-        }catch (Exception ex) {
-                
-            JOptionPane.showMessageDialog(rootPane, "Error Input");
-            return;
-        }
+     
 
 
     }//GEN-LAST:event_jButton1ActionPerformed

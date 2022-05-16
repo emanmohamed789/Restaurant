@@ -9,7 +9,7 @@ package Controller;
  *
  * @author silkroad
  */
-public abstract class person {
+public abstract class Person {
     
 
     protected int id;
@@ -25,10 +25,10 @@ public abstract class person {
 
    
 
-    public person() {
+    public Person() {
     }
 
-    public person(String user, String pass, int id, String fname, double price ){
+    public Person(String user, String pass, int id, String fname, double price ){
              
         this.id = id;
         this.fname = fname;
@@ -51,7 +51,7 @@ public abstract class person {
         this.fname = fname;
     }
 
-    public person(double price) {
+    public Person(double price) {
         this.price = price;
     }
 
@@ -85,11 +85,5 @@ public abstract class person {
         return this.fname;
     }
 
-   
-    public boolean login(String userName, String Pass) {
-        if (userName.equals("Admin@yahoo.com") && Pass.equals("12345678")) {
-            return true;
-        }
-        return false;
-    }
+ 
 }

@@ -4,12 +4,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import Controller.customer;
-import Model.Database;
-import java.awt.Color;
-import java.awt.*;
-import java.awt.event.*;
-import Model.Database;
+import Controller.Customer;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -22,10 +17,11 @@ import Model.Database;
  */
 public class UpdateCustomer extends javax.swing.JFrame {
 
+    Customer customer = new Customer();
+
     /**
      * Creates new form UpdateDeleteCustomer
      */
-    Database database = new Database();
 
 
     public UpdateCustomer() {
@@ -58,9 +54,6 @@ public class UpdateCustomer extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(175, 100));
@@ -169,9 +162,6 @@ public class UpdateCustomer extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 506, -1, -1));
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 214, -1, -1));
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -206,17 +196,15 @@ public class UpdateCustomer extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        int a = JOptionPane.showConfirmDialog(null, "DO you really want to Delete", "Select", JOptionPane.YES_NO_OPTION);
-        customer c = new customer();
-        if (a == 0) {
+        int confirmDelete = JOptionPane.showConfirmDialog(null, "DO you really want to Delete", "Select", JOptionPane.YES_NO_OPTION);
+        if (confirmDelete == 0) {
             try {
                 String id = jTextField1.getText();
                 if (jTextField1.getText().equals("")) {
                     JOptionPane.showMessageDialog(rootPane, "Error,please enter id to delete");
                     return;
                 }
-                //delete function
-                database.deleteCustomer(Integer.parseInt(id));
+                customer.DeleteCustomer(Integer.parseInt(id));
                 
                 setVisible(false);
                 
@@ -228,7 +216,21 @@ public class UpdateCustomer extends javax.swing.JFrame {
         
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        database.SearchCustomer(jTextField1, jTextField2, jTextField3, jTextField4, jTextField5);
+        if (jTextField1.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Error Input,please Enter ID");
+                return;
+            }
+        
+        try {
+            
+           if( customer.SearchCustomer(jTextField1, jTextField2, jTextField3, jTextField4, jTextField5)==0){
+            JOptionPane.showMessageDialog(null, "customer id does not Exist");
+           }
+        } catch (SQLException ex) {
+            Logger.getLogger(UpdateCustomer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UpdateCustomer.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
@@ -244,7 +246,10 @@ public class UpdateCustomer extends javax.swing.JFrame {
             String address = jTextField3.getText();
             int phone = Integer.parseInt(jTextField4.getText());
             String email = jTextField5.getText();
-            database.updateCustomer(name, address, phone, email, id);
+            
+            customer.UpdateCustomer(name, address, phone, email, id);
+            JOptionPane.showMessageDialog(null, "Successfully Update");
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error,please enter id");
             new UpdateCustomer().setVisible(true);
@@ -300,9 +305,6 @@ public class UpdateCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;

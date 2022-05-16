@@ -4,16 +4,12 @@
  * and open the template in the editor.
  */
 package Controller;
-
-import java.util.*;
-import java.io.*;
-import java.util.*;
-import java.util.InputMismatchException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.sql.*;
-import javax.swing.JOptionPane;
-
+import Model.Database;
+import java.io.IOException;
+import java.sql.SQLException;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,10 +22,9 @@ public class Employee {
     private String depart;
     private double salary;
     private double bonus;
-    static final String drive = "com.mysql.cj.jdbc.Driver";
-    static final String url = "jdbc:mysql://localhost/restaurant";
-    static final String name = "root";
-    static final String password = "";
+
+    Database database = new Database();
+    
     public Employee() {
 
     }
@@ -46,8 +41,8 @@ public class Employee {
         return fname;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setFirstName(String firstName) {
+        this.fname = firstName;
     }
 
     public String getDepart() {
@@ -73,79 +68,33 @@ public class Employee {
     public void setBonus(double bonus) {
         this.bonus = bonus;
     }
-
-   
-
     
-
-
+    public void AddEmployee(String employeeName, String department, double salary, double bonus) throws Exception{
+        database.saveEmployee(employeeName, department, salary, bonus);
+    }
     
-//    public void updateEmployee(String idd, String namee, String departt, String salaryy, String bonuss) throws Exception {
-//        Connection con = null;
-//        Statement stmt = null;
-//        try {
-//            Class.forName(drive);
-//            con = DriverManager.getConnection(url, name, password);
-//            if (con != null) {
-//                System.out.println("connected");
-//            }
-//            stmt = con.createStatement();
-//            String q = "UPDATE Employee SET firstName='" + namee + "',department='" + departt + "',salary='" + salaryy + "',bonus='" + bonuss + "' WHERE ID='" + idd + "'";
-//            stmt.executeUpdate(q);
-//
-//            stmt.close();
-//            con.close();
-//
-//        } catch (ClassNotFoundException | SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//    }
-
-
-    public void searchEmployee(int idd) throws Exception {
-        Connection con = null;
-        Statement stmt = null;
-        try {
-            Class.forName(drive);
-            con = DriverManager.getConnection(url, name, password);
-            if (con != null) {
-                System.out.println("connected");
-            }
-            stmt = con.createStatement();
-            String q = "SELECT  * FROM Employee WHERE ID='" + idd + "'";
-            ResultSet result = stmt.executeQuery(q);
-            while (result.next()) {
-                System.out.println(result.getInt("ID") + " " + result.getString("firstName") + " " + result.getString("department") + " " + result.getDouble("salary") + " " + result.getDouble("bonus") + "\n");
-
-            }
-            stmt.close();
-            con.close();
-
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(e.getMessage());
-        }
+    public void DeleteEmployee(int ID) throws IOException, ClassNotFoundException, SQLException{
+        database.deleteEmployee(ID);
     }
-
-    public void displayEmployee() throws IOException {
-        Connection con = null;
-        Statement stmt = null;
-        try {
-            Class.forName(drive);
-            con = DriverManager.getConnection(url, name, password);
-            if (con != null) {
-                System.out.println("connected");
-            }
-            stmt = con.createStatement();
-            String q = "SELECT * FROM Employee";
-            ResultSet result = stmt.executeQuery(q);
-            while (result.next()) {
-                System.out.println(result.getInt("ID") + " " + result.getString("firstName") + " " + result.getString("department") + " " + result.getDouble("salary") + " " + result.getDouble("bonus"));
-            }
-            stmt.close();
-            con.close();
-
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(e.getMessage());
-        }
+    
+    public void UpdateEmployee(int id, String employeeName, String department, double salary, double bonus) throws Exception{
+        database.updateEmployee(id, employeeName, department, salary, bonus);
     }
+    
+    public void RetrieveLastEmployeeID(JLabel jLabelID) throws ClassNotFoundException, SQLException{
+        database.RetrieveLastEmployeeID(jLabelID);
+    }
+    
+    public void RetrieveListofEmployees(DefaultTableModel model) throws ClassNotFoundException, SQLException{
+        database.RetrieveListofEmployees(model);
+    }
+    
+    public int SearchEmployee(JTextField jTextEmployeeID) throws IOException, ClassNotFoundException, SQLException, Exception{
+       return database.SearchEmployee(jTextEmployeeID);
+    }
+    
+    public void RetrieveEmployeeID(int ID) throws Exception{
+        database.RetrieveEmployeeID(ID);
+    }
+    
 }

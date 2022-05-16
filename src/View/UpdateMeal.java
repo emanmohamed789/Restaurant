@@ -5,17 +5,11 @@
  */
 package View;
 
-import static View.CancelOrderJFrame.drive;
-import static View.CancelOrderJFrame.password;
-import static View.CancelOrderJFrame.name;
-import static View.CancelOrderJFrame.url;
-import View.Meals;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import Controller.Employee;
-import Controller.meal;
-import Model.Database;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import Controller.Meal;
 
 
 /**
@@ -23,7 +17,7 @@ import Model.Database;
  * @author DELL
  */
 public class UpdateMeal extends javax.swing.JFrame {
-Database database = new Database();
+Meal meal = new Meal();
 
     public UpdateMeal() {
         initComponents();
@@ -52,7 +46,7 @@ Database database = new Database();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Update Meal");
-        setMinimumSize(new java.awt.Dimension(500, 400));
+        setMinimumSize(new java.awt.Dimension(600, 400));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -119,10 +113,38 @@ Database database = new Database();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    try {
         // TODO add your handling code here:
       
-        //update meal
-        database.searchMeal(jTextField1, jTextField2, jTextField3);
+        int ID = Integer.parseInt(jTextField3.getText());
+        int checkid = 0;
+
+        
+        if(meal.MealExists(ID)==0){
+            
+           JOptionPane.showMessageDialog(null, "Meal does not Exist");
+        }else{
+            ID = Integer.parseInt(jTextField3.getText());
+                String mealName = jTextField1.getText();
+                           
+                if (mealName.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Error Input");
+                }
+                double Price = Double.parseDouble(jTextField2.getText());
+
+                meal.UpdateMeal(mealName, Price, ID);
+                
+
+                JOptionPane.showMessageDialog(null, "the Meal is Updated sucessfully");
+        }
+        
+        
+        
+    } catch (SQLException ex) {
+        Logger.getLogger(UpdateMeal.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (Exception ex) {
+        Logger.getLogger(UpdateMeal.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -135,7 +157,7 @@ Database database = new Database();
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        new Meals().setVisible(true);
+        new MenuMeals().setVisible(true);
         this.setVisible(false);
 
     }//GEN-LAST:event_jButton3ActionPerformed

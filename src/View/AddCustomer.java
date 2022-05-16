@@ -1,35 +1,23 @@
 package View;
 
 
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import java.awt.Color;
-import java.awt.*;
-import java.awt.event.*;
-import Controller.customer;
-import Model.Database;
+import Controller.Customer;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
 
 /**
  *
  * @author hp
  */
 public class AddCustomer extends javax.swing.JFrame {
-    Database database = new Database();
+    Customer customer = new Customer();
 
     /**
      * Creates new form NewCustomer
      */
-    static final String drive = "com.mysql.cj.jdbc.Driver";
-    static final String url = "jdbc:mysql://localhost/project";
-    static final String name = "omnia";
-    static final String password = "Omnia123";
     
     public AddCustomer() {
         initComponents();
@@ -38,7 +26,7 @@ public class AddCustomer extends javax.swing.JFrame {
             int id=1;
             String str1=String.valueOf(id);
             jLabel7.setText(str1);
-            database.GenerateCustomerID(id,jLabel7);
+            customer.GenerateCustomerID(id, jLabel7);
             
         }
         catch(Exception e){
@@ -85,7 +73,7 @@ public class AddCustomer extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(0, 118, 221));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/close.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/close.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -179,7 +167,7 @@ public class AddCustomer extends javax.swing.JFrame {
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(871, 240, 40, -1));
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 240, -1, -1));
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/interfacemeal.jpg"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/interfacemeal.jpg"))); // NOI18N
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(-60, 0, 1040, 900));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -214,16 +202,17 @@ public class AddCustomer extends javax.swing.JFrame {
             String name = jTextField1.getText();
             String address = jTextField2.getText();
             int phone = Integer.parseInt(jTextField3.getText());
-            //String phone=jTextField3.getText();
             String email = jTextField4.getText();
-            if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("") || jTextField4.getText().equals("")) {
+            if (jTextField1.getText().equals("") || jTextField2.getText().equals("") ||
+                    jTextField3.getText().equals("") || jTextField4.getText().equals("")) {
                 JOptionPane.showMessageDialog(rootPane, "Error Input");
                 return;
             }
-            customer Customer = new customer();
-            database.saveCustomer(id, name, address, phone, email);
+            
+            customer.AddCustomer(id, name, address, phone, email);
+            JOptionPane.showMessageDialog(null, "Successfully Saved");
+
         } catch (Exception ex) {
-           // Logger.getLogger(NewCustomer.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null,"Error,Please Enter Data");
         }
         setVisible(false);

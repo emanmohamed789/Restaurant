@@ -64,7 +64,7 @@ public class MainMenu extends javax.swing.JFrame {
         jButton3.setBounds(350, 270, 220, 40);
 
         jLabel1.setFont(new java.awt.Font("Agency FB", 3, 36)); // NOI18N
-        jLabel1.setText("Resturant Management System");
+        jLabel1.setText("Restaurant Management System");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(240, 170, 420, 29);
         getContentPane().add(jLabel2);

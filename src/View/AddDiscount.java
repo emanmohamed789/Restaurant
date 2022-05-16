@@ -7,9 +7,9 @@ package View;
 
 import javax.swing.JOptionPane;
 
-import View.AddDiscount;
 import java.awt.Component;
 import Controller.Discount;
+
 
 /**
  *
@@ -17,7 +17,9 @@ import Controller.Discount;
  */
 public class AddDiscount extends javax.swing.JFrame {
 
+    private final String day[] = {"friday", "saturday"};
     private Component AddADiscount;
+    Discount discountObj = new Discount();
 
     /**
      * Creates new form AddADiscount
@@ -116,11 +118,14 @@ public class AddDiscount extends javax.swing.JFrame {
         // TODO add your handling code here:
         Discount discount = new Discount();
         try {
-            String Day = jTextFieldDay.getText();
-            double Discount = Double.parseDouble(jTextFieldDiscount.getText());
-            discount.setOfferday(Day);
-            
-            if (discount.setdiscount(Discount)) {
+            String offerday = jTextFieldDay.getText();
+            double DiscountValue = Double.parseDouble(jTextFieldDiscount.getText());
+            discount.setOfferday(offerday);
+
+            if (offerday.equalsIgnoreCase(day[0]) || offerday.equalsIgnoreCase(day[1])) {
+                discount.setdiscount(DiscountValue);
+                discountObj.AddDiscount(DiscountValue, offerday);
+
                 JOptionPane.showMessageDialog(AddADiscount,
                         "Discount has been added Successfully.",
                         "Success",

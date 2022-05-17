@@ -112,9 +112,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            int ID = Integer.parseInt(jTextField1.getText());
-           
-            
+                       
             if (jTextField2.getText().equals("") || jTextField1.getText().equals("")) {
                 JOptionPane.showMessageDialog(rootPane, "Error Input");
                 return;

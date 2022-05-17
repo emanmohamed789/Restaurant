@@ -116,14 +116,13 @@ public class AddDiscount extends javax.swing.JFrame {
 
     private void jButtonAddDisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddDisActionPerformed
         // TODO add your handling code here:
-        Discount discount = new Discount();
         try {
             String offerday = jTextFieldDay.getText();
             double DiscountValue = Double.parseDouble(jTextFieldDiscount.getText());
-            discount.setOfferday(offerday);
+            discountObj.setOfferday(offerday);
 
             if (offerday.equalsIgnoreCase(day[0]) || offerday.equalsIgnoreCase(day[1])) {
-                discount.setdiscount(DiscountValue);
+                discountObj.setdiscount(DiscountValue);
                 discountObj.AddDiscount(DiscountValue, offerday);
 
                 JOptionPane.showMessageDialog(AddADiscount,

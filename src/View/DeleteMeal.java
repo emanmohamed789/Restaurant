@@ -98,15 +98,14 @@ Meal Meal = new Meal();
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
       
-            int ID = Integer.parseInt(jTextField1.getText());
-            
-    try {
-        if(Meal.MealExists(ID)==0){
+        int ID = Integer.parseInt(jTextField1.getText());
+
+        try {
+            if (Meal.MealExists(ID)==0){
             
             JOptionPane.showMessageDialog(null, "Meal does not Exist");
         }else{
-            
-            
+                        
             if (jTextField1.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Error Input");
             }

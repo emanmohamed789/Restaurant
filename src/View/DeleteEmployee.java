@@ -87,8 +87,8 @@ Employee employee = new Employee();
         try {
 
             if (employee.SearchEmployee(jTextField1)==0) {
+                
                 employee.DeleteEmployee(Integer.parseInt(jTextField1.getText()));
-
                 JOptionPane.showMessageDialog(null, "the employee is deleted sucessfully");
 
             } else {

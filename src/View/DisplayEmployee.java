@@ -27,8 +27,6 @@ public class DisplayEmployee extends javax.swing.JFrame {
     public DisplayEmployee() throws ClassNotFoundException, SQLException {
         initComponents();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-
-        
         employee.RetrieveListofEmployees(model);
 
     }

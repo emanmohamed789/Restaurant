@@ -113,27 +113,23 @@ Meal meal = new Meal();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    try {
-        // TODO add your handling code here:
-      
-        int ID = Integer.parseInt(jTextField3.getText());
-        int checkid = 0;
+        try {
+            // TODO add your handling code here:
 
-        
-        if(meal.MealExists(ID)==0){
-            
-           JOptionPane.showMessageDialog(null, "Meal does not Exist");
-        }else{
-            ID = Integer.parseInt(jTextField3.getText());
+            int ID = Integer.parseInt(jTextField3.getText());
+
+            if (meal.MealExists(ID) == 0) {
+
+                JOptionPane.showMessageDialog(null, "Meal does not Exist");
+            } else {
                 String mealName = jTextField1.getText();
-                           
+
                 if (mealName.equals("")) {
                     JOptionPane.showMessageDialog(null, "Error Input");
                 }
                 double Price = Double.parseDouble(jTextField2.getText());
 
                 meal.UpdateMeal(mealName, Price, ID);
-                
 
                 JOptionPane.showMessageDialog(null, "the Meal is Updated sucessfully");
         }

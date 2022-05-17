@@ -226,7 +226,6 @@ Discount discountObject = new Discount();
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
         // TODO add your handling code here:
-        Invoice invoice;
         this.setVisible(false);
         new DeleteOrder().setVisible(true);
     }//GEN-LAST:event_jButtonCancelActionPerformed
@@ -248,11 +247,10 @@ Discount discountObject = new Discount();
         String Day = jTextFieldDay.getText();
         printAtTextArea();
         double TotalBill = invoice.CalculateBill(quantity, price);
+        
     try {
         discountObject.RetrieveDiscount(discountObject);
-    } catch (ClassNotFoundException ex) {
-        Logger.getLogger(MenuBilling.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (SQLException ex) {
+    } catch (ClassNotFoundException | SQLException ex) {
         Logger.getLogger(MenuBilling.class.getName()).log(Level.SEVERE, null, ex);
     }
 
@@ -263,9 +261,7 @@ Discount discountObject = new Discount();
                     invoice.AddOrder(order, quantity, price, invoice.getBillAfterDiscount());
                     JOptionPane.showMessageDialog(rootPane, "Add Success");
 
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(MenuBilling.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
+                } catch (ClassNotFoundException | SQLException ex) {
                     Logger.getLogger(MenuBilling.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
@@ -274,9 +270,7 @@ Discount discountObject = new Discount();
                     JOptionPane.showMessageDialog(this, "Offer isn't applied to " + jTextFieldDay.getText() + "s");
                     printAtTextArea();
                     invoice.AddOrder(order, quantity, price, TotalBill);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(MenuBilling.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
+                } catch (ClassNotFoundException | SQLException ex) {
                     Logger.getLogger(MenuBilling.class.getName()).log(Level.SEVERE, null, ex);
                 }
 

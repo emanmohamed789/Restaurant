@@ -109,10 +109,7 @@ public class MenuCustomer extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
         new EmployeeModule().setVisible(true);
-//        int a=JOptionPane.showConfirmDialog(null,"Do you really want to logout","Select",JOptionPane.YES_NO_OPTION);
-//        if(a==0){
-//            System.exit(0);
-//        }
+
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked

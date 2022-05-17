@@ -136,6 +136,8 @@ Login login = new Login();
 
     } catch (SQLException ex) {
         Logger.getLogger(ResetUser.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(ResetUser.class.getName()).log(Level.SEVERE, null, ex);
     }
         
             

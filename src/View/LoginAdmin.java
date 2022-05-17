@@ -7,7 +7,6 @@ package View;
 
 import javax.swing.JOptionPane;
 import Controller.Login;
-import Controller.Login;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

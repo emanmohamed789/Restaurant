@@ -203,8 +203,10 @@ public class AddCustomer extends javax.swing.JFrame {
             String address = jTextField2.getText();
             int phone = Integer.parseInt(jTextField3.getText());
             String email = jTextField4.getText();
+            
             if (jTextField1.getText().equals("") || jTextField2.getText().equals("") ||
                     jTextField3.getText().equals("") || jTextField4.getText().equals("")) {
+                
                 JOptionPane.showMessageDialog(rootPane, "Error Input");
                 return;
             }

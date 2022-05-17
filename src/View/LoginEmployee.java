@@ -5,6 +5,7 @@
 package View;
 
 import Controller.Login;
+import static View.MainMenu.RetrieveMainMenu;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -131,7 +132,8 @@ public class LoginEmployee extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        new MainMenu().setVisible(true);
+        RetrieveMainMenu().setVisible(true);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

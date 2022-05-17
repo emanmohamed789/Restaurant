@@ -7,6 +7,7 @@ package View;
 
 import javax.swing.JOptionPane;
 import Controller.Login;
+import static View.MainMenu.RetrieveMainMenu;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -118,7 +119,8 @@ public class LoginAdmin extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        new MainMenu().setVisible(true);
+        RetrieveMainMenu().setVisible(true);
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed

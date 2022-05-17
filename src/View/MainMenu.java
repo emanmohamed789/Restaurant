@@ -14,8 +14,18 @@ public class MainMenu extends javax.swing.JFrame {
     /**
      * Creates new form ResturantSystem
      */
-    public MainMenu() {
+    
+    //Singelton Design Pattern
+    private static MainMenu mainmenu = null;
+    
+    private MainMenu() {
         initComponents();
+    }
+    public static MainMenu RetrieveMainMenu(){
+        if (mainmenu == null){
+            mainmenu = new MainMenu();
+        }
+        return mainmenu;
     }
 
     /**

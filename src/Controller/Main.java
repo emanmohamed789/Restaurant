@@ -2,11 +2,11 @@
 package Controller;
 
 
-import View.MainMenu;
+import static View.MainMenu.RetrieveMainMenu;
 
 public class Main  {
     public static void main(String[] args) throws Exception {
-        new MainMenu().setVisible(true);
+        RetrieveMainMenu();
     }
 
 }
